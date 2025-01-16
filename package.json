@@ -1,0 +1,21 @@
+{
+  "name": "devconnector",
+  "version": "1.0.0",
+  "description": "Social network for developers",
+  "main": "server.js",
+  "scripts": {
+    "start": "node start",
+    "server": "nodemon server"
+  },
+  "author": "ajit pawar",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "config": "^3.3.12",
+    "express": "^4.21.2",
+    "gravator": "^1.0.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoos": "^0.0.1-security",
+    "request": "^2.88.2"
+  }
+}
