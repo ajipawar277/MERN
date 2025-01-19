@@ -13,9 +13,12 @@
     "bcryptjs": "^2.4.3",
     "config": "^3.3.12",
     "express": "^4.21.2",
+    "express-validator": "^7.2.1",
+    "gravatar": "^1.8.2",
     "gravator": "^1.0.2",
     "jsonwebtoken": "^9.0.2",
     "mongoos": "^0.0.1-security",
+    "mongoose": "^8.9.5",
     "request": "^2.88.2"
   }
 }
