@@ -137,7 +137,6 @@ router.delete('/', auth , async (req,res) => {
 //@route Put api/profile/experience
 //@Desc  Add Profile Experience
 //@Access Private
-
 router.put('/experience', [auth, [
     check('title', 'Title is required').not().isEmpty(),
     check('company', 'Company is required').not().isEmpty(),
@@ -165,7 +164,6 @@ router.put('/experience', [auth, [
 //@route Delete api/profile/experience/:exp_id
 //@Desc  Delete Experience from Profile
 //@Access Private
-
 router.delete('/experience/:exp_id', auth , async (req,res) => {
     try {
         //Get Profile
@@ -176,6 +174,53 @@ router.delete('/experience/:exp_id', auth , async (req,res) => {
         .indexOf(req.params.exp_id);
 
         profile.experience.splice(removeIndex,1);
+        await profile.save();
+        res.json(profile);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send("Server Error");
+    }
+})
+
+//@route Put api/profile/education
+//@Desc  Add Profile Education
+//@Access Private
+router.put('/education', [auth, [
+    check('school', 'School is required').not().isEmpty(),
+    check('degree', 'Degree is required').not().isEmpty(),
+    check('fieldofstudy', 'Field of Study is required').not().isEmpty(),
+    check('from', 'From date is required').not().isEmpty()
+]],async (req,res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()){
+        return res.status(400).json({ errors:errors.array() });
+    }
+    const { school, degree, fieldofstudy, from, to, current, description } = req.body;
+    const newEdu = { school, degree, fieldofstudy, from, to, current, description }
+    try {
+        const profile = await Profile.findOne({ user : req.user.id });
+        profile.education.unshift(newEdu);
+        await profile.save();
+        res.json(profile);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send("Server Error");
+    }
+})
+
+//@route Delete api/profile/education/:edu_id
+//@Desc  Delete Education from Profile
+//@Access Private
+router.delete('/education/:edu_id', auth , async (req,res) => {
+    try {
+        //Get Profile
+        const profile = await Profile.findOne({ user: req.user.id });
+        //Get Remove Index
+        const removeIndex = profile.education
+        .map(item => item.id)
+        .indexOf(req.params.edu_id);
+
+        profile.education.splice(removeIndex,1);
         await profile.save();
         res.json(profile);
     } catch (err) {
