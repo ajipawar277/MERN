@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setAlert } from '../../actions/alert';
 import { register } from '../../actions/auth';
@@ -28,7 +28,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
 
     //redirect if authenticated
     if (isAuthenticated) {
-        return <Redirect to="/dashboard"></Redirect>
+        return <Navigate to="/dashboard" />
     }
 
     return (
