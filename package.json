@@ -5,13 +5,18 @@
   "main": "server.js",
   "scripts": {
     "start": "node start",
-    "server": "nodemon server"
+    "server": "nodemon server",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "ajit pawar",
   "license": "MIT",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "concurrently": "^9.1.2",
     "config": "^3.3.12",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "express-validator": "^7.2.1",
     "gravatar": "^1.8.2",
@@ -19,6 +24,16 @@
     "jsonwebtoken": "^9.0.2",
     "mongoos": "^0.0.1-security",
     "mongoose": "^8.9.5",
-    "request": "^2.88.2"
+    "react-axios": "^2.0.6",
+    "redux": "^5.0.1",
+    "redux-devtools-extension": "^2.13.9",
+    "request": "^2.88.2",
+    "uuid": "^11.0.5",
+    "webpack-dev-middleware": "^7.4.2"
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-private-property-in-object": "^7.25.9",
+    "concurrently": "^9.1.2",
+    "nodemon": "^1.18.11"
   }
 }
